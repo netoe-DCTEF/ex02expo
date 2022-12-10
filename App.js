@@ -1,20 +1,47 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import
+  {
+   Button,
+   View,
+   Text
+  } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import Ifsul from './Ifsul.js';
+import Home from './Home.js';
+import Calc from './Calc.js';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello World!</Text>
-      <StatusBar style="auto" />
-    </View>
+const Drawer = createDrawerNavigator();
+
+function HomeScreen(){
+  return(
+    <Home>
+
+    </Home>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function IfsulScreen(){
+  return(
+      <Ifsul pag = {HomeScreen}></Ifsul>
+  );
+}
+
+function CalcScreen(){
+  return(
+    <Calc>
+
+    </Calc>
+  );
+}
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Página inicial">
+        <Drawer.Screen name="Página inicial" component={HomeScreen} />
+        <Drawer.Screen name="Ifsul" component={IfsulScreen} />
+        <Drawer.Screen name="Calculadora" component={CalcScreen}/>
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+}
